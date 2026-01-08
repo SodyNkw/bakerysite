@@ -17,11 +17,18 @@ import com.example.bakerysite.bakerysite.service.CustomerService;
 @Controller
 public class HomeController {
 
+    private final CustomerService customerService;
+
     private final CustomerRepository customerRepository;
 
-    public HomeController(CustomerRepository customerRepository) {
+    public HomeController(CustomerRepository customerRepository, CustomerService customerService) {
         this.customerRepository = customerRepository;
+        this.customerService = customerService;
     }
+
+    // public HomeController(CustomerService customerService) {
+    //     this.customerService = customerService;
+    // }
 
     @GetMapping("/")
     public String home(){
@@ -51,10 +58,12 @@ public class HomeController {
 
     @PostMapping("/create")
     public String saveCustomer(@ModelAttribute Customer customer) {
-        System.out.println("Saving customer: " + customer); // DEBUG
-        Customer saved = customerRepository.save(customer);
-        System.out.println("Saved customer id: " + saved.getId());// directly save
-        System.out.println("Saved with id: " + customer.getId()); // confirm id
+        //System.out.println("Saving customer: " + customer); // DEBUG
+        customerService.addCustomer(customer);
+        // Customer saved = customerRepository.save(customer);
+        // System.out.println("Saved customer id: " + saved.getId());// directly save
+        // System.out.println("Saved with id: " + customer.getId());
+        // System.out.println("Saved time " + saved.getOrderDateTime()); // confirm id
         return "redirect:/create"; // redirect to avoid template errors
     }
 
