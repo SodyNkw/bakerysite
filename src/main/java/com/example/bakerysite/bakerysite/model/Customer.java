@@ -1,7 +1,11 @@
 package com.example.bakerysite.bakerysite.model;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Document(collection = "customers") // Mongo collection
 public class Customer {
@@ -13,6 +17,8 @@ public class Customer {
     private String lastName;
     private String emailAddress;
     private String phoneNumber;
+    @CreatedDate
+    private Instant orderedAt;
 
     public Customer() {}
 
@@ -39,9 +45,12 @@ public class Customer {
     public String getPhoneNumber() { return phoneNumber; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 
+    public Instant getOrderDateTime() { return orderedAt; }
+    public void setOrderDateTime(Instant orderedAt) { this.orderedAt = orderedAt; }
+
     @Override
     public String toString() {
         return "Customer{id='" + id + "', firstName='" + firstName + "', lastName='" + lastName +
-               "', emailAddress='" + emailAddress + "', phoneNumber='" + phoneNumber + "'}";
+               "', emailAddress='" + emailAddress + "', phoneNumber='" + phoneNumber + "', orderDateTime='" + orderedAt + "'}";
     }
 }

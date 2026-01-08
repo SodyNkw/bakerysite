@@ -1,5 +1,6 @@
 package com.example.bakerysite.bakerysite.service;
 
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,9 @@ public class CustomerService {
     private CustomerRepository customerRepository;
 
     public Customer addCustomer(@RequestBody Customer customer){
+        customer.setOrderDateTime(Instant.now());
         return customerRepository.save(customer);
+
     }
 
     public List<Customer> getAllCustomers(){
