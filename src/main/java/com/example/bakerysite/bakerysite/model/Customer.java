@@ -5,7 +5,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 
 @Document(collection = "customers") // Mongo collection
 public class Customer {
@@ -19,6 +18,7 @@ public class Customer {
     private String phoneNumber;
     @CreatedDate
     private Instant orderedAt;
+    private Cart cart;
 
     public Customer() {}
 

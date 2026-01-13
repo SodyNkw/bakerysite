@@ -1,6 +1,5 @@
 package com.example.bakerysite.bakerysite.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +7,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.bakerysite.bakerysite.model.Customer;
-import com.example.bakerysite.bakerysite.repository.CustomerRepository;
 import com.example.bakerysite.bakerysite.service.CustomerService;
 import com.example.bakerysite.bakerysite.service.MailSenderService;
 
@@ -20,16 +18,12 @@ public class HomeController {
     private final CustomerService customerService;
     private final MailSenderService mailSenderService;
 
-    //private final CustomerRepository customerRepository;
 
     public HomeController(CustomerService customerService, MailSenderService mailSenderService) {
         this.customerService = customerService;
         this.mailSenderService = mailSenderService;
     }
 
-    // public HomeController(CustomerService customerService) {
-    //     this.customerService = customerService;
-    // }
 
     @GetMapping("/")
     public String home(){
